@@ -1,0 +1,20 @@
+{
+  "name": "chat-server",
+  "version": "1.0.0",
+  "description": "Socket chat with react",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js"
+  },
+  "author": "Carlos Garcia",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.20",
+    "socket.io": "^3.1.0"
+  }
+}
