@@ -16,7 +16,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 let totalUsers = {}
-let lastMessage = {}
+let lastMessages = {}
 
 io.on('connection',(socket)=>{
   console.log('new connection');
@@ -36,7 +36,7 @@ const joinUser = (socket) => {
 
     io.to(room).emit('join',{
       totalUsers : totalUsers[room],
-      lastMessages: 0
+      lastMessages: lastMessages[room]
     })
 
     // socket.broadcast.to(socket.room).emit('joinUserGlobal',{
@@ -63,6 +63,10 @@ const chatMessage = (socket) =>{
   socket.on('sendMessage',(message)=>{
     console.log(message);
     io.to(message.room).emit('chatMessages',message)
+    if(!lastMessages[message.room])
+      lastMessages[message.room] = [message]
+    else
+      lastMessages[message.room].push(message)
   })
 }
 
